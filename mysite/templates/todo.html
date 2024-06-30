@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #e0f7fa;
+    text-align: center;
+    padding: 50px;
+    background-image: url('https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.shutterstock.com%2Fsearch%2Fdo-list-background&psig=AOvVaw0egGp6Yjr_8e_ZjZ1WnG3C&ust=1719827496700000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCIDL4uuGg4cDFQAAAAAdAAAAABAJ');
+    background-size: cover;
+  }
+
+  .container {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+  }
+
+  h1 {
+    color: #007bff;
+    font-size: 2.5em;
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  li {
+    margin-bottom: 10px;
+    background-color: #ffffff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  form {
+    display: inline;
+  }
+
+  form input[type="text"] {
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    flex: 1;
+    font-size: 1em;
+  }
+
+  form input[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+  }
+
+  form input[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+
+  .delete-form {
+    display: inline;
+  }
+
+  .delete-form input[type="submit"] {
+    background-color: #ff4d4d;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+  }
+
+  .delete-form input[type="submit"]:hover {
+    background-color: #cc0000;
+  }
+</style>
+<title>Todo List</title>
+</head>
+<body>
+  <div class="container">
+    <h1>Todo List</h1>
+    <ul>
+      {% for todo_item in all_items %}
+        <li>
+          {{ todo_item.content }}
+          <form action="/deleteTodo/{{ todo_item.id }}/" method="post" class="delete-form">
+            {% csrf_token %}
+            <input type="submit" value="Delete" />
+          </form>
+        </li>
+      {% endfor %}
+    </ul>
+
+    <form action="/addTodo/" method="post">
+      {% csrf_token %}
+      <input type="text" name="content" placeholder="Add a new todo..." />
+      <input type="submit" value="Add" />
+    </form>
+  </div>
+</body>
+</html>

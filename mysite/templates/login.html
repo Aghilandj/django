@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    text-align: center;
+    padding: 50px;
+  }
+  
+  .container {
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+
+  h1 {
+    color: #007bff; /* Primary color for headings */
+    margin-bottom: 20px;
+  }
+
+  form {
+    margin-top: 20px;
+  }
+
+  form input[type="text"],
+  form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+
+  form button {
+    background-color: #007bff; /* Primary button color */
+    color: #fff;
+    border: none;
+    padding: 12px 24px; /* Increased padding for better click area */
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease; /* Smooth hover effect */
+  }
+
+  form button:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+  }
+
+  form a {
+    display: block;
+    margin-top: 10px;
+    text-decoration: none;
+    color: #007bff; /* Link color matches button */
+    transition: color 0.3s ease; /* Smooth color transition */
+  }
+
+  form a:hover {
+    text-decoration: underline;
+    color: #0056b3; /* Darker color on hover */
+  }
+</style>
+<title>Login</title>
+</head>
+<body>
+  <div class="container">
+    <h1>Login</h1>
+    <form method="POST">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Login</button>
+      <a href="{% url 'signup' %}">Don't have an account? Create one</a>
+    </form>
+  </div>
+</body>
+</html>
